@@ -5,7 +5,6 @@ import Post from "../Post/Post";
 
 const TODO = () => {
   const data = useSelector((state) => state.Todo);
-  data.forEach((element, index) => (element.id = index));
   return (
     <div className={styles["wrapper"]}>
       {data.map((item) => (

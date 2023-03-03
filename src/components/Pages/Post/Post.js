@@ -4,14 +4,10 @@ import styles from "./Post.module.css";
 
 const Post = ({ data }) => {
   const dispatch = useDispatch();
-  const changeDone = () => {
-    data.isDone = !data.isDone;
-    return data;
-  };
   const addNewDone = () => {
-    changeDone().isDone
-      ? dispatch({ type: "CHANGE_DONE", newDone: changeDone() })
-      : dispatch({ type: "CHANGE_TODO", newTodo: changeDone() });
+    !data.isDone
+      ? dispatch({ type: "CHANGE_DONE", newDone: data })
+      : dispatch({ type: "CHANGE_TODO", newTodo: data });
   };
   return (
     <div className={styles["wrapper"]}>
