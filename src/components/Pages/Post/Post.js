@@ -6,8 +6,8 @@ const Post = ({ data }) => {
   const dispatch = useDispatch();
   const addNewDone = () => {
     !data.isDone
-      ? dispatch({ type: "CHANGE_DONE", newDone: data })
-      : dispatch({ type: "CHANGE_TODO", newTodo: data });
+      ? dispatch({ type: "CHANGE_DONE", newDone: data, id: data.id })
+      : dispatch({ type: "CHANGE_TODO", newTodo: data, id: data.id });
   };
   return (
     <div className={styles["wrapper"]}>
