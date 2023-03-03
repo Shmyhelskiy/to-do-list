@@ -5,6 +5,7 @@ import { Outlet } from "react-router";
 import { useDispatch } from "react-redux";
 const Layout = () => {
   const [title, setTitle] = useState("");
+  const [counter, setCounter] = useState(0);
   const dispatch = useDispatch();
 
   const takeTask = (event) => {
@@ -13,6 +14,8 @@ const Layout = () => {
 
   const createNewPost = () => {
     const newPost = { Title: title, isDone: false };
+    newPost.id = counter;
+    setCounter((counter) => counter + 1);
     return newPost;
   };
 
