@@ -1,0 +1,33 @@
+.header {
+    display: flex;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    background-color: #0097a7;
+  }
+  .search {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+  }
+  .input {
+    outline: 0;
+    border: none;
+    font-size: 1.2em;
+    margin-right: 20px;
+  
+    transition: border 1s;
+  }
+  .input:focus {
+    border-bottom: 2px solid orange;
+  }
+  
+  .button {
+    border-radius: 15px;
+    background-color: white;
+    padding: 5px;
+  }
+  .button:hover {
+    background-color: #0097a7;
+  }
+  
