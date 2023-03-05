@@ -3,13 +3,16 @@ import styles from "./Layout.module.css";
 import Nav from "../Navigation/Nav";
 import { Outlet } from "react-router";
 import { useDispatch } from "react-redux";
+
 const Layout = () => {
   const [title, setTitle] = useState("");
   const [counter, setCounter] = useState(0);
+  const [value, setValue] = useState("");
   const dispatch = useDispatch();
 
   const takeTask = (event) => {
     setTitle(event.target.value);
+    setValue(event.target.value);
   };
 
   const createNewPost = () => {
@@ -20,12 +23,14 @@ const Layout = () => {
   };
 
   const addNewPost = () => {
-    if (title === "") {
+    if (value === "") {
       alert(`Write task`);
       return;
     }
     dispatch({ type: "ADD_POST", newPost: createNewPost() });
+    setValue("");
   };
+
   return (
     <div>
       <div className={styles["header"]}>
@@ -37,6 +42,7 @@ const Layout = () => {
           placeholder="Add Task"
           type="text"
           onChange={takeTask}
+          value={value}
         />
         <button className={styles["button"]} onClick={addNewPost}>
           CREATE

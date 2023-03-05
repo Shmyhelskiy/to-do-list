@@ -13,25 +13,32 @@ function rootReducer(state = defaultState, action) {
       return { ...state, Todo: newData };
 
     case "CHANGE_DONE":
+      const copyTodo = [...state.Todo];
       const Done = action.newDone;
       Done.isDone = true;
+
       if (Done.isDone) {
         const findIdndex = state.Todo.findIndex((item) => item.id === Done.id);
-        state.Todo.splice(findIdndex, 1);
+        copyTodo.splice(findIdndex, 1);
       }
+
       const newDone = [...state.Done, Done];
-      return { ...state, Done: newDone };
+      return { ...state, Todo: copyTodo, Done: newDone };
 
     case "CHANGE_TODO":
+      const copyDone = [...state.Done];
       const ToDo = action.newTodo;
       ToDo.isDone = false;
 
       if (!ToDo.isDone) {
         const findIdndex = state.Done.findIndex((item) => item.id === ToDo.id);
-        state.Done.splice(findIdndex, 1);
+        copyDone.splice(findIdndex, 1);
       }
       const newToDo = [...state.Todo, ToDo];
-      return { ...state, Todo: newToDo };
+      return { ...state, Done: copyDone, Todo: newToDo };
+
+    case "CLEAN_LIST":
+      return defaultState;
 
     default:
       return state;

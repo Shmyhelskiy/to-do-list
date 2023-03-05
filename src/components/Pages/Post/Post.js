@@ -13,7 +13,11 @@ const Post = ({ data }) => {
     <div className={styles["wrapper"]}>
       <div className={styles["container"]}>
         <div className={styles["checkbox-box"]}>
-          <input type="checkbox" onClick={addNewDone}></input>
+          <input
+            type="checkbox"
+            onChange={addNewDone}
+            checked={data.isDone}
+          ></input>
         </div>
         <div className={styles["title-box"]}>
           <p>{data.Title}</p>

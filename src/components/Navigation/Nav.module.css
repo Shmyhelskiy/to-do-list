@@ -10,12 +10,17 @@
 }
 
 .link {
-  margin: 20px;
-  color: white;
+  margin-bottom: 20px;
+  color: rgb(255, 255, 255, 0.5);
   font-size: 1.2em;
   text-decoration: none;
 }
-.link:hover {
-  border-radius: 15px;
-  background-color: rgba(2, 113, 128, 0.219);
+.contaiter-nav {
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+  flex-direction: column;
+}
+.image {
+  width: 30px;
 }
