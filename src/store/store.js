@@ -1,15 +1,18 @@
 import { createStore } from "redux";
 import { composeWithDevTools } from "@redux-devtools/extension";
 
-const defaultState = {
+export const defaultState = {
   Todo: [],
   Done: [],
 };
-
 function rootReducer(state = defaultState, action) {
   switch (action.type) {
     case "ADD_POST":
       const newData = [...state.Todo, action.newPost];
+      localStorage.setItem(
+        "state",
+        JSON.stringify({ ...state, Todo: newData })
+      );
       return { ...state, Todo: newData };
 
     case "CHANGE_DONE":
@@ -23,6 +26,10 @@ function rootReducer(state = defaultState, action) {
       }
 
       const newDone = [...state.Done, Done];
+      localStorage.setItem(
+        "state",
+        JSON.stringify({ ...state, Todo: copyTodo, Done: newDone })
+      );
       return { ...state, Todo: copyTodo, Done: newDone };
 
     case "CHANGE_TODO":
@@ -35,11 +42,19 @@ function rootReducer(state = defaultState, action) {
         copyDone.splice(findIdndex, 1);
       }
       const newToDo = [...state.Todo, ToDo];
+      localStorage.setItem(
+        "state",
+        JSON.stringify({ ...state, Done: copyDone, Todo: newToDo })
+      );
       return { ...state, Done: copyDone, Todo: newToDo };
 
     case "CLEAN_LIST":
+      localStorage.setItem("state", JSON.stringify(defaultState));
       return defaultState;
 
+    case "CREATE_STATE":
+      const lastState = JSON.parse(localStorage.getItem("state"));
+      return lastState;
     default:
       return state;
   }
